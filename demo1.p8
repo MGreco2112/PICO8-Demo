@@ -9,7 +9,10 @@ function _init()
 		y=63,
 		fx=false,
 		fy=false,
-		sp=1
+		sp=1,
+		cm=true,
+		cw=true,
+		speed=1
 	}
 	
 end
@@ -17,14 +20,14 @@ end
 function _update()
 --x plauer movement--
 	if btn(➡️) then
-	 player.x+=1
+	 player.x+=player.speed
 	 player.fx=false
 	 player.fy=false
 	 player.sp=1
 	end
 	
 	if btn(⬅️) then
-		player.x-=1
+		player.x-=player.speed
 		player.fx=true
 		player.fy=false
 		player.sp=1
@@ -33,15 +36,21 @@ function _update()
 --y player movement--	
 	
 	if btn(⬆️) then
-		player.y-=1
+		player.y-=player.speed
 		player.fy=false
 		player.sp=2
 	end
 	
 	if btn(⬇️) then
-		player.y+=1
+		player.y+=player.speed
 		player.fy=true
 		player.sp=2
+	end
+	
+	if mget(flr((player.x+4)/8),flr((player.y+4)/8))==59 or mget(flr((player.x+4)/8),flr((player.y+4)/8))==60 or mget(flr((player.x+4)/8),flr((player.y+4)/8))==44 then
+		player.speed = 2
+	else
+		player.speed = 1
 	end
 end
 
