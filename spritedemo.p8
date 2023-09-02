@@ -7,25 +7,47 @@ function _init()
 	ani_speed = 10
 	first_frame = 1
 	last_frame = 4
+	
+	player = {
+		xcor = 63,
+		ycor = 63
+	}
 end
 
 function _update()
-	if stimer < ani_speed then
-		stimer+=1
-	else
-		if sprite < last_frame then
-			sprite += 1
+	if btn(⬅️) or btn(➡️) or btn(⬇️) or btn(⬆️) then
+		if stimer < ani_speed then
+			stimer+=1
 		else
-			sprite = first_frame
+			if sprite < last_frame then
+				sprite += 1
+			else
+				sprite = first_frame
+			end
+			stimer=0
 		end
-		stimer=0
 	end
 	
+	if btn(⬅️) then
+		player.xcor -=1
+	end
+	
+	if btn(➡️) then
+		player.xcor += 1
+	end
+	
+	if btn(⬆️) then
+		player.ycor -= 1
+	end
+	
+	if btn(⬇️) then
+		player.ycor += 1
+	end
 end
 
 function _draw()
 	cls()
-	spr(sprite,63,63)
+	spr(sprite,player.xcor,player.ycor)
 end
 __gfx__
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
