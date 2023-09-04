@@ -4,7 +4,7 @@ __lua__
 function _init()
 	sprite = 1
 	stimer = 0
-	ani_speed = 10
+	ani_speed = 5
 	first_frame = 1
 	last_frame = 4
 	
