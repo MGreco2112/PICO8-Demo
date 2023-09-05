@@ -2,12 +2,6 @@ pico-8 cartridge // http://www.pico-8.com
 version 41
 __lua__
 function _init()
-	sprite = 1
-	stimer = 0
-	ani_speed = 5
-	first_frame = 1
-	last_frame = 4
-	
 	init_player()
 end
 
@@ -17,12 +11,19 @@ function _update()
 end
 
 function _draw()
-	cls()
-	map()
-	spr(sprite,player.xcor,player.ycor)
+	draw_elements()
 end
 -->8
 function init_player()
+	
+	player_ani = {
+		sprite = 1,
+		stimer = 0,
+		ani_speed = 5,
+		first_frame = 1,
+		last_frame = 4
+	}
+
 	player = {
 			xcor = 63,
 			ycor = 63
@@ -50,18 +51,34 @@ end
 
 function animate_player()
 	if btn(⬅️) or btn(➡️) or btn(⬇️) or btn(⬆️) then
-		if stimer < ani_speed then
-			stimer+=1
+		if player_ani.stimer < player_ani.ani_speed then
+			player_ani.stimer+=1
 		else
-			if sprite < last_frame then
-				sprite += 1
+			if player_ani.sprite < player_ani.last_frame then
+				player_ani.sprite += 1
 			else
-				sprite = first_frame
+				player_ani.sprite = player_ani.first_frame
 			end
-			stimer=0
+			player_ani.stimer=0
 		end
 	end
+	
 end
+
+function draw_elements()
+	cls()
+	map()
+	spr(player_ani.sprite,player.xcor,player.ycor)
+end
+-->8
+function init_state()
+	state = "start"
+end
+
+--todo
+--create start screen that
+--closes when button is pressed
+--leading to main gameplay
 __gfx__
 00000000000000000000000000000000000000004444444444444444444444444666646444444444466666646666666600000000000000000000000000000000
 00000000000440000004400000044000000440004444444444444444440444444666666466466646666646664444444400000000000000000000000000000000
