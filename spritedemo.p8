@@ -2,6 +2,7 @@ pico-8 cartridge // http://www.pico-8.com
 version 41
 __lua__
 function _init()
+	init_state()
 	init_player()
 end
 
@@ -73,6 +74,12 @@ end
 -->8
 function init_state()
 	state = "start"
+end
+
+function update_state()
+end
+
+function draw_screen()
 end
 
 --todo
