@@ -12,7 +12,7 @@ function _update()
 end
 
 function _draw()
-	draw_elements()
+	draw_screen()
 end
 -->8
 function init_player()
@@ -77,9 +77,22 @@ function init_state()
 end
 
 function update_state()
+	if state == "start" then
+		state = "play"
+	end
 end
 
 function draw_screen()
+	if state == "start" then
+		cls()
+		print("press x to start game")
+		if btn(❎) then
+			update_state()
+		end
+	else
+		draw_elements()
+	end
+	
 end
 
 --todo
