@@ -85,7 +85,7 @@ end
 function draw_screen()
 	if state == "start" then
 		cls()
-		print("press x to start game")
+		print("press ❎ to start game",20,50)
 		if btn(❎) then
 			update_state()
 		end
